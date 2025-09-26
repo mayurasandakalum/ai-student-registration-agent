@@ -1,6 +1,7 @@
 from supabase import create_client, Client
 import os
 from dotenv import load_dotenv
+from typing import Optional
 
 # Load environment variables from .env file
 load_dotenv()
@@ -11,7 +12,7 @@ SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 supabase_client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 
-def create_student_record(student_name: str, mobile_number: str) -> dict:
+def create_student_record(student_name: str, mobile_number: Optional[str]) -> dict:
     """
     Creates a new record in the tbl_students table.
 

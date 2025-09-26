@@ -4,7 +4,7 @@ from google.adk.tools import FunctionTool
 from . import prompt
 from .tools import create_student_record
 
-MODEL = "gemini-flash-lite-latest"
+MODEL = "gemini-2.5-flash-lite"
 
 agent = LlmAgent(
     name="student_registration_agent",
