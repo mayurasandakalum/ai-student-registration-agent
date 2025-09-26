@@ -2,7 +2,7 @@ from google.adk.agents import LlmAgent
 
 from . import prompt
 
-MODEL = "gemini-2.5-pro"
+MODEL = "gemini-flash-lite-latest"
 
 agent = LlmAgent(
     name="student_registration_agent",
