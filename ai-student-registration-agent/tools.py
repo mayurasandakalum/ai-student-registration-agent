@@ -11,7 +11,7 @@ SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 supabase_client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 
-def create_student_record(student_name: str, mobile_number: str = None):
+def create_student_record(student_name: str, mobile_number: str) -> dict:
     """
     Creates a new record in the tbl_students table.
 

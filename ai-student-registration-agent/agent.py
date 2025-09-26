@@ -1,6 +1,8 @@
 from google.adk.agents import LlmAgent
+from google.adk.tools import FunctionTool
 
 from . import prompt
+from .tools import create_student_record
 
 MODEL = "gemini-flash-lite-latest"
 
@@ -9,6 +11,7 @@ agent = LlmAgent(
     description="An agent that helps students register for classes.",
     model=MODEL,
     instruction=prompt.STUDENT_REGISTRATION_PROMPT,
+    tools=[FunctionTool(create_student_record)],
 )
 
 root_agent = agent
