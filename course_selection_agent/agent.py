@@ -1,4 +1,4 @@
-from google.adk import LlmAgent
+from google.adk.agents import LlmAgent
 from google.adk.tools import FunctionTool
 
 from . import prompt
@@ -11,3 +11,5 @@ agent = LlmAgent(
     model=MODEL,
     instruction=prompt.COURSE_SELECTION_PROMPT,
 )
+
+root_agent = agent
