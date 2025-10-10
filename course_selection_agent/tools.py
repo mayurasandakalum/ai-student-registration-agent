@@ -37,7 +37,7 @@ def get_available_courses(
         if level is not None:
             params["p_level"] = level
 
-        response = supabase_client.rpc("get_available_courses", params).execute()
+        response = supabase_client.rpc("f_get_available_courses", params).execute()
         return response.data if response.data else []
     except Exception as e:
         return [{"error": str(e)}]
@@ -63,7 +63,7 @@ def get_course_details(
         if course_code is not None:
             params["p_course_code"] = course_code
 
-        response = supabase_client.rpc("get_course_details", params).execute()
+        response = supabase_client.rpc("f_get_course_details", params).execute()
         return response.data[0] if response.data else {"error": "Course not found"}
     except Exception as e:
         return {"error": str(e)}
@@ -81,7 +81,7 @@ def search_courses(keyword: str) -> List[Dict[str, Any]]:
     """
     try:
         response = supabase_client.rpc(
-            "search_courses", {"p_keyword": keyword}
+            "f_search_courses", {"p_keyword": keyword}
         ).execute()
         return response.data if response.data else []
     except Exception as e:
@@ -100,7 +100,7 @@ def get_courses_by_stream(stream: str) -> List[Dict[str, Any]]:
     """
     try:
         response = supabase_client.rpc(
-            "get_courses_by_stream", {"p_stream": stream}
+            "f_get_courses_by_stream", {"p_stream": stream}
         ).execute()
         return response.data if response.data else []
     except Exception as e:
@@ -115,7 +115,7 @@ def get_available_streams_and_subjects() -> Dict[str, Any]:
         dict: A dictionary containing lists of available streams, subjects, and levels or an error message.
     """
     try:
-        response = supabase_client.rpc("get_available_streams_and_subjects").execute()
+        response = supabase_client.rpc("f_get_available_streams_and_subjects").execute()
         return response.data[0] if response.data else {"error": "No data found"}
     except Exception as e:
         return {"error": str(e)}
