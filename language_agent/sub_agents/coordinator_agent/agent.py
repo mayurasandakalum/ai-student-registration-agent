@@ -9,7 +9,7 @@ from .sub_agents.student_registration_agent.agent import student_registration_ag
 
 
 coordinator_agent = LlmAgent(
-    name="Coordinator Agent",
+    name="coordinator_agent",
     description="An agent that coordinates multiple specialized agents to accomplish complex tasks.",
     model="gemini-2.5-flash",
     # Add the missing instruction prompt
