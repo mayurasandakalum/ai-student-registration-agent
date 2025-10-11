@@ -12,7 +12,7 @@ from .tools import (
 
 MODEL = "gemini-2.5-flash"
 
-agent = LlmAgent(
+course_selection_agent = LlmAgent(
     name="course_selection_agent",
     description="An agent that helps students select courses based on their preferences.",
     model=MODEL,
@@ -26,4 +26,4 @@ agent = LlmAgent(
     ],
 )
 
-root_agent = agent
+root_agent = course_selection_agent

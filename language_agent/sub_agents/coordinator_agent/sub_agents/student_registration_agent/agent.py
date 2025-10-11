@@ -6,7 +6,7 @@ from .tools import create_student_record
 
 MODEL = "gemini-2.5-flash-lite"
 
-agent = LlmAgent(
+student_registration_agent = LlmAgent(
     name="student_registration_agent",
     description="An agent that helps students register for classes.",
     model=MODEL,
@@ -14,4 +14,4 @@ agent = LlmAgent(
     tools=[FunctionTool(create_student_record)],
 )
 
-root_agent = agent
+root_agent = student_registration_agent
