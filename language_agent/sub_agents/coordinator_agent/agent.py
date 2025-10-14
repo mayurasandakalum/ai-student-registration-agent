@@ -1,6 +1,5 @@
-# 📁 language_agent/sub_agents/coordinator_agent/agent.py (Corrected)
-
 from google.adk.agents import LlmAgent
+from google.adk.tools import AgentTool
 
 # Import the prompt from the local directory
 from . import prompt
@@ -14,9 +13,9 @@ coordinator_agent = LlmAgent(
     model="gemini-2.5-flash",
     # Add the missing instruction prompt
     instruction=prompt.COORDINATOR_PROMPT,
-    sub_agents=[
-        course_selection_agent,
-        student_registration_agent,
+    tools=[
+        AgentTool(course_selection_agent),
+        AgentTool(student_registration_agent),
     ],
 )
 

@@ -11,7 +11,9 @@ student_registration_agent = LlmAgent(
     description="An agent that helps students register for classes.",
     model=MODEL,
     instruction=prompt.STUDENT_REGISTRATION_PROMPT,
-    tools=[FunctionTool(create_student_record)],
+    tools=[
+        FunctionTool(create_student_record),
+    ],
 )
 
 root_agent = student_registration_agent

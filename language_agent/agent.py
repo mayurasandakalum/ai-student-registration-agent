@@ -1,4 +1,6 @@
 from google.adk.agents import LlmAgent
+from google.adk.tools import AgentTool
+
 from .sub_agents.coordinator_agent.agent import coordinator_agent
 from . import prompt
 
@@ -8,7 +10,9 @@ language_agent = LlmAgent(
     description="An agent that translates user input and coordinates with other agents.",
     model="gemini-2.5-pro",
     instruction=prompt.LANGUAGE_PROMPT,
-    sub_agents=[coordinator_agent],
+    tools=[
+        AgentTool(coordinator_agent),
+    ],
 )
 
 root_agent = language_agent
