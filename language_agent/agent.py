@@ -6,7 +6,7 @@ from . import prompt
 language_agent = LlmAgent(
     name="language_agent",
     description="An agent that translates user input and coordinates with other agents.",
-    model="gemini-2.5-pro",
+    model="gemini-2.5-flash",
     instruction=prompt.LANGUAGE_PROMPT,
     sub_agents=[coordinator_agent],
 )
