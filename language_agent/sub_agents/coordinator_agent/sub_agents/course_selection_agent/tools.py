@@ -6,10 +6,14 @@ from typing import Optional, List, Dict, Any
 # Load environment variables from .env file
 load_dotenv()
 
-# Initialize Supabase client
+# Initialize Supabase credentials
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
-supabase_client = create_client(SUPABASE_URL, SUPABASE_KEY)
+
+
+# Helper function to create a fresh client for each request
+def _create_supabase_client() -> Client:
+    return create_client(SUPABASE_URL, SUPABASE_KEY)
 
 
 def get_available_courses(
@@ -29,6 +33,7 @@ def get_available_courses(
         list: A list of available courses with their details or an error message.
     """
     try:
+        supabase_client = _create_supabase_client()
         params = {}
         if subject is not None:
             params["p_subject"] = subject
@@ -57,6 +62,7 @@ def get_course_details(
         dict: Detailed course information or an error message.
     """
     try:
+        supabase_client = _create_supabase_client()
         params = {}
         if course_id is not None:
             params["p_course_id"] = course_id
@@ -80,6 +86,7 @@ def search_courses(keyword: str) -> List[Dict[str, Any]]:
         list: A list of matching courses or an error message.
     """
     try:
+        supabase_client = _create_supabase_client()
         response = supabase_client.rpc(
             "f_search_courses", {"p_keyword": keyword}
         ).execute()
@@ -99,6 +106,7 @@ def get_courses_by_stream(stream: str) -> List[Dict[str, Any]]:
         list: A list of courses in the specified stream or an error message.
     """
     try:
+        supabase_client = _create_supabase_client()
         response = supabase_client.rpc(
             "f_get_courses_by_stream", {"p_stream": stream}
         ).execute()
@@ -115,6 +123,7 @@ def get_available_streams_and_subjects() -> Dict[str, Any]:
         dict: A dictionary containing lists of available streams, subjects, and levels or an error message.
     """
     try:
+        supabase_client = _create_supabase_client()
         response = supabase_client.rpc("f_get_available_streams_and_subjects").execute()
         return response.data[0] if response.data else {"error": "No data found"}
     except Exception as e:

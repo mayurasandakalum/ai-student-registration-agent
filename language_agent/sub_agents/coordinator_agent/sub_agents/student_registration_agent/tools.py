@@ -6,10 +6,14 @@ from typing import Optional
 # Load environment variables from .env file
 load_dotenv()
 
-# Initialize Supabase client
+# Initialize Supabase credentials
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
-supabase_client = create_client(SUPABASE_URL, SUPABASE_KEY)
+
+
+# Helper function to create a fresh client for each request
+def _create_supabase_client() -> Client:
+    return create_client(SUPABASE_URL, SUPABASE_KEY)
 
 
 def create_student_record(student_name: str, mobile_number: Optional[str]) -> dict:
@@ -24,6 +28,7 @@ def create_student_record(student_name: str, mobile_number: Optional[str]) -> di
         dict: The inserted record data or an error message.
     """
     try:
+        supabase_client = _create_supabase_client()
         data = {"student_name": student_name}
         if mobile_number is not None:
             data["mobile_number"] = mobile_number
